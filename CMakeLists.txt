@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.9)
+cmake_minimum_required(VERSION 3.26)
 set(CMAKE_CXX_STANDARD 11)  # don't need to specifiy
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
@@ -16,13 +16,8 @@ set_target_properties(readerwriterqueue PROPERTIES
 target_include_directories(readerwriterqueue INTERFACE
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
         $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
-        $<INSTALL_INTERFACE:$<PATH:APPEND,${CMAKE_INSTALL_INCLUDEDIR},readerwriterqueue>>
-        $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/readerwriterqueue>
+        $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME}>
 )
-
-message("HELLO??!")
-message("${CMAKE_INSTALL_INCLUDEDIR}")
-message("${CMAKE_INSTALL_INCLUDEDIR}/readerwriterqueue")
 
 set_target_properties(readerwriterqueue PROPERTIES EXPORT_NAME readerwriterqueue)
 
