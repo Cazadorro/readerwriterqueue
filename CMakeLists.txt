@@ -1,6 +1,8 @@
-cmake_minimum_required(VERSION 3.26)
+cmake_minimum_required(VERSION 3.9)
 set(CMAKE_CXX_STANDARD 11)  # don't need to specifiy
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+include(GNUInstallDirs)
 
 project(readerwriterqueue)
 
@@ -16,7 +18,7 @@ set_target_properties(readerwriterqueue PROPERTIES
 target_include_directories(readerwriterqueue INTERFACE
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
         $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
-        $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
+        $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME}>
 )
 
 set_target_properties(readerwriterqueue PROPERTIES EXPORT_NAME readerwriterqueue)
@@ -24,13 +26,9 @@ set_target_properties(readerwriterqueue PROPERTIES EXPORT_NAME readerwriterqueue
 # This is here to ensure parity with the install interface, but won't hide the previous target name.
 add_library(moodycamel::readerwriterqueue ALIAS readerwriterqueue)
 
-
-include(CMakePackageConfigHelpers)
-
-include(GNUInstallDirs)
-
 install(TARGETS readerwriterqueue
         EXPORT readerwriterqueue_Targets
+        COMPONENT readerwriterqueue_Development
         INCLUDES DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
         RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
         COMPONENT creaderwriterqueue_RunTime
@@ -52,6 +50,8 @@ install(EXPORT readerwriterqueue_Targets
         FILE readerwriterqueueTargets.cmake
         COMPONENT readerwriterqueue_Development
 )
+
+include(CMakePackageConfigHelpers)
 
 configure_package_config_file(${CMAKE_CURRENT_SOURCE_DIR}/cmake/config.cmake.in
         "${CMAKE_CURRENT_BINARY_DIR}/readerwriterqueueConfig.cmake"
