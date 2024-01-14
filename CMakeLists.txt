@@ -16,7 +16,7 @@ set_target_properties(readerwriterqueue PROPERTIES
 target_include_directories(readerwriterqueue INTERFACE
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
         $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
-        $<INSTALL_INTERFACE:"${CMAKE_INSTALL_INCLUDEDIR}/readerwriterqueue">
+        $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
 )
 
 message("HELLO??!")
