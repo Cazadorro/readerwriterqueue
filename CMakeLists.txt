@@ -19,6 +19,10 @@ target_include_directories(readerwriterqueue INTERFACE
         $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/readerwriterqueue>
 )
 
+message("HELLO??!")
+message("${CMAKE_INSTALL_INCLUDEDIR}")
+message("${CMAKE_INSTALL_INCLUDEDIR}/readerwriterqueue")
+
 set_target_properties(readerwriterqueue PROPERTIES EXPORT_NAME readerwriterqueue)
 
 # This is here to ensure parity with the install interface, but won't hide the previous target name.
