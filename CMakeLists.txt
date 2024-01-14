@@ -17,6 +17,7 @@ target_include_directories(readerwriterqueue INTERFACE
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
         $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
         $<INSTALL_INTERFACE:$<PATH:APPEND,${CMAKE_INSTALL_INCLUDEDIR},readerwriterqueue>>
+        $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/readerwriterqueue>
 )
 
 message("HELLO??!")
@@ -35,7 +36,6 @@ include(GNUInstallDirs)
 
 install(TARGETS readerwriterqueue
         EXPORT readerwriterqueue_Targets
-        COMPONENT readerwriterqueue_Development
         INCLUDES DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
         RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
         COMPONENT creaderwriterqueue_RunTime
